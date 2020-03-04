@@ -53,6 +53,7 @@ public class Book extends Entity<Integer> {
     @Override
     public String toString() {
         return "Book{" +
+                "Book id = " + this.getId() + " " +
                 "autorName='" + autorName + '\'' +
                 ", title='" + title + '\'' +
                 ", year=" + year +

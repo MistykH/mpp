@@ -5,6 +5,7 @@ import Domain.Book;
 import Domain.Client;
 import Domain.ValidatorException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,9 +32,13 @@ public class UI {
         System.out.println("9 - show books");
         System.out.println("10 - show clients");
         System.out.println("11 - buy book");
+        System.out.println("12 - sort clients by money spent");
+        System.out.println("13 - filter client by name");
         System.out.println("0 - exit");
 
     }
+
+
 
     public void UI_add_book(Book book){
         boolean ok = false;
@@ -200,6 +205,13 @@ public class UI {
         return returedCliend;
     }
 
+    public String UI_read_string(){
+        Scanner scan = new Scanner(System.in);
+        System.out.print("enter the name:");
+        String name = scan.nextLine();
+        return name;
+    }
+
     public int UI_read_int(){
         Scanner scan = new Scanner(System.in);
         System.out.print("enter an integer:");
@@ -215,6 +227,23 @@ public class UI {
         return integerToRead;
     }
 
+    public void UI_sort(){
+        ArrayList<Client> clientList = this.controller.sort_clients();
+
+        for(Client c : clientList){
+            System.out.println(c);
+        }
+
+    }
+
+
+    public void UI_filter_by_name(){
+        String name = this.UI_read_string();
+        ArrayList<Client> clientList = this.controller.Controller_filter_by_name(name);
+        for(Client c : clientList){
+            System.out.println(c);
+        }
+    }
 
     public void main(){
 
@@ -273,6 +302,13 @@ public class UI {
             else if(value == 11){
                 this.UI_buy_book();
             }
+            else if(value == 12){
+                this.UI_sort();
+            }
+            else if(value == 13){
+                this.UI_filter_by_name();
+            }
+
         }
         scan.close();
     }

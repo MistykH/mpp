@@ -5,6 +5,7 @@ import Domain.Client;
 import Domain.ValidatorException;
 import Repository.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -118,6 +119,25 @@ public class Controller {
         return true;
     }
 
+
+    public ArrayList<Client> sort_clients(){
+        ArrayList<Client> clientList = (ArrayList<Client>) this.clientRepository.findAll();
+        ArrayList<Client> clientListSorted = (ArrayList<Client>) clientList.clone();
+        boolean ok = false;
+        while(!ok){
+            ok = true;
+            for(int i = 0 ; i < clientList.size() - 1; i++){
+                if(clientListSorted.get(i).get_money_spent() > clientListSorted.get(i+1).get_money_spent()){
+                    Client aux = clientListSorted.get(i);
+                    clientListSorted.set(i,clientListSorted.get(i+1));
+                    clientListSorted.set(i+1,aux);
+                    ok = false;
+                }
+            }
+        }
+        return clientListSorted;
+    }
+
     public boolean Controller_delete_client(Integer id){
         try{
             this.clientRepository.delete(id);
@@ -144,6 +164,21 @@ public class Controller {
             throw e;
         }
         return true;
+    }
+
+    public ArrayList<Client> Controller_filter_by_name(String name){
+        List<Client> clientList =  this.Controller_get_clients();
+        ArrayList<Client> clientListFiltered = new ArrayList<Client>();
+
+        for(Client c : clientList){
+            if(c.getFullName().contains(name)){
+                clientListFiltered.add(c);
+            }
+        }
+        return clientListFiltered;
+
+
+
     }
 
 }

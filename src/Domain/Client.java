@@ -51,6 +51,7 @@ public class Client extends Entity<Integer> {
     @Override
     public String toString() {
         return "Client{" +
+                "Client id = " + this.getId() + " " +
                 "fullName='" + fullName + '\'' +
                 ", booksBought=" + booksBought +
                 ", moneySpet=" + moneySpet +
