@@ -1,5 +1,7 @@
 package Repository;
 import Domain.Entity;
+
+import java.io.FileNotFoundException;
 import java.util.Optional;
 import Domain.ValidatorException;
 
@@ -38,7 +40,7 @@ public interface Repository<ID,T extends Entity<ID>> {
      * @throws ValidatorException
      *             if the entity is not valid.
      */
-    Optional<T> save(T entity) throws ValidatorException;
+    Optional<T> save(T entity) throws ValidatorException, FileNotFoundException;
 
     /**
      * Removes the entity with the given id.
@@ -49,7 +51,7 @@ public interface Repository<ID,T extends Entity<ID>> {
      * @throws IllegalArgumentException
      *             if the given id is null.
      */
-    Optional<T> delete(ID id);
+    Optional<T> delete(ID id) throws FileNotFoundException;
 
     /**
      * Updates the given entity.
@@ -63,5 +65,5 @@ public interface Repository<ID,T extends Entity<ID>> {
      * @throws ValidatorException
      *             if the entity is not valid.
      */
-    Optional<T> update(T entity) throws ValidatorException;
+    Optional<T> update(T entity) throws ValidatorException, FileNotFoundException;
 }

@@ -1,6 +1,6 @@
 package Domain;
 
-public class Book extends Entity<Integer> {
+public class Book extends Entity<Integer> implements java.io.Serializable{
     private String autorName;
     private String title;
     private int year;

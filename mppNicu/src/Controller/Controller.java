@@ -3,19 +3,20 @@ package Controller;
 import Domain.Book;
 import Domain.Client;
 import Domain.ValidatorException;
-import Repository.Repository;
+import Repository.xmlRepository;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Controller implements IController{
-    private Repository<Integer, Book> bookRepository;
-    private Repository<Integer, Client> clientRepository;
+    private xmlRepository<Integer,Book> bookRepository;
+    private xmlRepository<Integer, Client> clientRepository;
 
 
-    public Controller(Repository<Integer, Book> bookRepository, Repository<Integer, Client> clientRepository){
+    public Controller(xmlRepository<Integer, Book> bookRepository, xmlRepository<Integer, Client> clientRepository){
         this.bookRepository = bookRepository;
         this.clientRepository = clientRepository;
     }
@@ -92,27 +93,27 @@ public class Controller implements IController{
         return (List<Client>) this.clientRepository.findAll();
     }
 
-    public boolean Controller_save_book(Book book) throws ValidatorException {
+    public boolean Controller_save_book(Book book) throws ValidatorException, FileNotFoundException {
         try{
             this.bookRepository.save(book);
-        } catch ( ValidatorException e) {
+        } catch (ValidatorException | FileNotFoundException e) {
             throw e;
 
         }
         return true;
     }
 
-    public boolean Controller_save_client(Client client) throws ValidatorException {
+    public boolean Controller_save_client(Client client) throws ValidatorException, FileNotFoundException {
         try{
             this.clientRepository.save(client);
-        } catch (ValidatorException e) {
+        } catch (ValidatorException | FileNotFoundException e) {
             throw e;
 
         }
         return true;
     }
 
-    public boolean Controller_delete_book(Integer id){
+    public boolean Controller_delete_book(Integer id) throws FileNotFoundException {
         try{
             this.bookRepository.delete(id);
         } catch (Exception e) {
@@ -144,17 +145,17 @@ public class Controller implements IController{
         return clientListSorted;
     }
 
-    public boolean Controller_delete_client(Integer id){
+    public boolean Controller_delete_client(Integer id) throws FileNotFoundException {
         try{
             this.clientRepository.delete(id);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | FileNotFoundException e) {
             throw e;
         }
         return true;
     }
 
 
-    public boolean Controller_update_book(Book book) throws ValidatorException {
+    public boolean Controller_update_book(Book book) throws ValidatorException, FileNotFoundException {
         try{
             this.bookRepository.update(book);
         } catch (Exception | ValidatorException e) {
@@ -163,7 +164,7 @@ public class Controller implements IController{
         return true;
     }
 
-    public boolean Controller_update_client(Client client) throws ValidatorException {
+    public boolean Controller_update_client(Client client) throws ValidatorException, FileNotFoundException {
         try{
             this.clientRepository.update(client);
         } catch (Exception | ValidatorException e) {

@@ -4,6 +4,7 @@ import Domain.Book;
 import Domain.Client;
 import Domain.ValidatorException;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public interface IController {
      * @return true if book was added, false otherwise
      * @throws ValidatorException
      */
-    public boolean Controller_save_book(Book book) throws ValidatorException;
+    public boolean Controller_save_book(Book book) throws ValidatorException, FileNotFoundException;
 
 
     /**
@@ -55,14 +56,14 @@ public interface IController {
      * @return true if client was saved, false otherwise
      * @throws ValidatorException
      */
-    public boolean Controller_save_client(Client client) throws ValidatorException;
+    public boolean Controller_save_client(Client client) throws ValidatorException, FileNotFoundException;
 
     /**
      *
      * @param id
      * @return true if the book was deleted, false otherwise
      */
-    public boolean Controller_delete_book(Integer id);
+    public boolean Controller_delete_book(Integer id) throws FileNotFoundException;
 
     /**
      *
@@ -75,7 +76,7 @@ public interface IController {
      * @param id
      * @return true if the client was deleted, false otheriwse
      */
-    public boolean Controller_delete_client(Integer id);
+    public boolean Controller_delete_client(Integer id) throws FileNotFoundException;
 
 
     /**
@@ -84,7 +85,7 @@ public interface IController {
      * @return true if book was updated, false otherwise
      * @throws ValidatorException
      */
-    public boolean Controller_update_book(Book book) throws ValidatorException;
+    public boolean Controller_update_book(Book book) throws ValidatorException, FileNotFoundException;
 
     /**
      *
@@ -92,7 +93,7 @@ public interface IController {
      * @return true if client was updated, false otherwise
      * @throws ValidatorException
      */
-    public boolean Controller_update_client(Client client) throws ValidatorException;
+    public boolean Controller_update_client(Client client) throws ValidatorException, FileNotFoundException;
 
 
     /**

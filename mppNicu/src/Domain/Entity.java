@@ -1,5 +1,7 @@
 package Domain;
 
+
+
 public class Entity<ID> {
     private ID id;
 

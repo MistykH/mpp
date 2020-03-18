@@ -5,6 +5,7 @@ import Domain.Book;
 import Domain.Client;
 import Domain.ValidatorException;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -48,8 +49,8 @@ public class UI {
         boolean ok = false;
         try{
             ok = this.controller.Controller_save_book(book);
-        } catch (ValidatorException e) {
-            System.out.println(e.get_message());
+        } catch (IllegalArgumentException | FileNotFoundException | ValidatorException e) {
+            System.out.println(e.getMessage());
         }
         if(ok == true){
             System.out.println("book added");
@@ -63,12 +64,12 @@ public class UI {
      * adds a client to repo
      */
 
-    public void UI_add_client(Client client){
+    public void UI_add_client(Client client) throws FileNotFoundException, ValidatorException {
         boolean ok = false;
-        try{
+        try {
             ok = this.controller.Controller_save_client(client);
-        } catch (ValidatorException e) {
-            System.out.println(e.get_message());
+        } catch (IllegalArgumentException | FileNotFoundException e) {
+            System.out.println(e.getMessage());
         }
         if(ok == true){
             System.out.println("client added");
@@ -86,7 +87,7 @@ public class UI {
         boolean ok = false;
         try{
             ok = this.controller.Controller_delete_client(id);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
         if(ok == true){
@@ -103,7 +104,7 @@ public class UI {
         boolean ok = false;
         try{
             ok = this.controller.Controller_delete_book(id);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
         if(ok == true){
@@ -121,7 +122,7 @@ public class UI {
         boolean ok = false;
         try{
             ok = this.controller.Controller_update_book(book);
-        } catch (IllegalArgumentException | ValidatorException e) {
+        }catch (IllegalArgumentException | FileNotFoundException | ValidatorException e) {
             System.out.println(e.getMessage());
         }
         if(ok == true){
@@ -139,7 +140,7 @@ public class UI {
         boolean ok = false;
         try{
             ok = this.controller.Controller_update_client(client);
-        } catch (IllegalArgumentException | ValidatorException e) {
+        } catch (IllegalArgumentException | FileNotFoundException | ValidatorException e) {
             System.out.println(e.getMessage());
         }
         if(ok == true){
@@ -295,7 +296,7 @@ public class UI {
         clientList.stream().forEach(c-> System.out.println(c));
     }
 
-    public void main(){
+    public void main() throws FileNotFoundException, ValidatorException {
 
         Scanner scan = new Scanner(System.in);
         while(true){
@@ -313,7 +314,8 @@ public class UI {
 
             else if(value == 2){
                 Client clientToAdd = this.UI_read_client(this.client_id);
-                this.UI_add_client(clientToAdd);
+                    this.UI_add_client(clientToAdd);
+
             }
             else  if(value == 3){
                 int id = UI_read_int();

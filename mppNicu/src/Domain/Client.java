@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Client extends Entity<Integer> {
+public class Client extends Entity<Integer> implements java.io.Serializable {
     private String fullName;
     private ArrayList<Book> booksBought;
     private int moneySpet;

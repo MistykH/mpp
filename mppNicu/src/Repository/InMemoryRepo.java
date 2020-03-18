@@ -5,6 +5,7 @@ import Domain.Client;
 import Domain.Entity;
 import Domain.ValidatorException;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.OptionalInt;
@@ -12,7 +13,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class InMemoryRepo<ID,T extends Entity<ID>> implements Repository<ID,T> {
-    ArrayList<T> entities;
+    protected ArrayList<T> entities;
 
     public InMemoryRepo() {
         this.entities = new ArrayList<>();
@@ -65,7 +66,7 @@ public class InMemoryRepo<ID,T extends Entity<ID>> implements Repository<ID,T> {
     }
 
     @Override
-    public Optional<T> save(T entity) throws ValidatorException {
+    public Optional<T> save(T entity) throws ValidatorException, FileNotFoundException {
         if(entity == null){
             throw new IllegalArgumentException("null argument");
         }
@@ -91,7 +92,7 @@ public class InMemoryRepo<ID,T extends Entity<ID>> implements Repository<ID,T> {
     }
 
     @Override
-    public Optional<T> delete(ID id) {
+    public Optional<T> delete(ID id) throws FileNotFoundException {
         if(id == null){
             throw new IllegalArgumentException("null id");
         }
@@ -111,7 +112,7 @@ public class InMemoryRepo<ID,T extends Entity<ID>> implements Repository<ID,T> {
     }
 
     @Override
-    public Optional<T> update(T entity) throws ValidatorException {
+    public Optional<T> update(T entity) throws ValidatorException, FileNotFoundException {
         if(entity == null){
             throw new IllegalArgumentException("null entity");
         }
