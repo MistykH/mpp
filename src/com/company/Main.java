@@ -4,8 +4,10 @@ import Controller.Controller;
 import Domain.Book;
 import Domain.Client;
 import Domain.ValidatorException;
+import Repository.InMemoryRepo;
 import Repository.xmlRepository;
 import UI.UI;
+import com.sun.xml.bind.v2.model.core.ID;
 import tests.testRepo;
 
 import javax.xml.bind.JAXBException;
@@ -15,21 +17,21 @@ import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ValidatorException, JAXBException, ParserConfigurationException {
-	xmlRepository<Integer, Book> bookRepo = new xmlRepository("E:\\untitled8\\books.xml");
-	xmlRepository<Integer, Client> clientRepo = new xmlRepository("./clients.xml");
+	public static void main(String[] args) throws IOException, ValidatorException, JAXBException, ParserConfigurationException {
+		InMemoryRepo<Integer, Book> bookRepo = new InMemoryRepo();
+		InMemoryRepo<Integer, Client> clientRepo = new InMemoryRepo();
 
-	Controller controller = new Controller(bookRepo,clientRepo);
-	UI ui = new UI(controller);
-	testRepo test = new testRepo();
-	//test.test_all();
+		Controller controller = new Controller(bookRepo,clientRepo);
+		UI ui = new UI(controller);
+		testRepo test = new testRepo();
+		//test.test_all();
+		xmlRepository<Integer,Book,Client> xmlRepo = new xmlRepository<Integer,Book,Client>("E:\\untitled8\\books.xml","E:\\untitled8\\clients.xml",bookRepo,clientRepo);
+		xmlRepo.read_from_file();
+		ui.main();
 
-	ui.main();
-
-	bookRepo.write_to_file();
-	clientRepo.write_to_file();
+		xmlRepo.write_to_file();
 
 
 
-    }
+	}
 }

@@ -3,6 +3,7 @@ package Controller;
 import Domain.Book;
 import Domain.Client;
 import Domain.ValidatorException;
+import Repository.InMemoryRepo;
 import Repository.xmlRepository;
 
 import javax.xml.bind.JAXBException;
@@ -15,11 +16,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Controller implements IController{
-    private xmlRepository<Integer,Book> bookRepository;
-    private xmlRepository<Integer, Client> clientRepository;
+    private InMemoryRepo<Integer,Book> bookRepository;
+    private InMemoryRepo<Integer, Client> clientRepository;
 
 
-    public Controller(xmlRepository<Integer, Book> bookRepository, xmlRepository<Integer, Client> clientRepository){
+    public Controller(InMemoryRepo<Integer, Book> bookRepository, InMemoryRepo<Integer, Client> clientRepository){
         this.bookRepository = bookRepository;
         this.clientRepository = clientRepository;
     }

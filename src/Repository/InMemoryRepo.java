@@ -6,7 +6,7 @@ import Domain.Entity;
 import Domain.ValidatorException;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.*;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,13 +15,12 @@ import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
+@XmlRootElement(name = "Entities")
 public class InMemoryRepo<ID,T extends Entity<ID>> implements Repository<ID,T> {
-    protected ArrayList<T> entities;
 
-    public InMemoryRepo() {
-        this.entities = new ArrayList<>();
-    }
+    protected ArrayList<T> entities = new ArrayList<>();
+
+    public InMemoryRepo(){}
 
     public static <T> Collector<T, ?, T> toSingleton() {
         return Collectors.collectingAndThen(
@@ -34,7 +33,10 @@ public class InMemoryRepo<ID,T extends Entity<ID>> implements Repository<ID,T> {
                 }
         );
     }
-
+    @XmlElement
+    ArrayList<T> getEntities(){
+        return this.entities;
+    }
     @Override
     public Optional<T> findOne(ID id) throws ValidatorException {
         if(id == null){
@@ -64,7 +66,10 @@ public class InMemoryRepo<ID,T extends Entity<ID>> implements Repository<ID,T> {
 
 
 
-    @Override
+    public void setEntities(ArrayList<T> entities){
+        this.entities = entities;
+    }
+   @Override
     public Iterable<T> findAll() {
         return this.entities;
     }

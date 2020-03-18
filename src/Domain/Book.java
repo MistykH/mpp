@@ -1,9 +1,9 @@
 package Domain;
 
-import javax.xml.bind.annotation.*;
+import com.sun.xml.bind.v2.model.core.ID;
 
-@XmlRootElement(name = "Book")
-@XmlAccessorType (XmlAccessType.FIELD)
+import javax.xml.bind.annotation.*;
+@XmlRootElement(name = "product")
 public class Book extends Entity<Integer>{
 
     private String autorName;
@@ -15,19 +15,23 @@ public class Book extends Entity<Integer>{
     private int price;
 
 
+    public int getid(){
+        return super.getId();
+    }
 
+    @XmlAttribute
     public String getAutorName() {
         return autorName;
     }
-
+    @XmlElement
     public String getTitle() {
         return title;
     }
-
+    @XmlElement
     public int getYear() {
         return year;
     }
-
+    @XmlElement
     public int getPrice() {
         return price;
     }

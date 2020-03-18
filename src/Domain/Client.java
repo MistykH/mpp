@@ -1,15 +1,12 @@
 package Domain;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
-@XmlRootElement(name = "Client")
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "product")
 public class Client extends Entity<Integer> implements java.io.Serializable {
     private String fullName;
     private ArrayList<Book> booksBought;
@@ -43,19 +40,30 @@ public class Client extends Entity<Integer> implements java.io.Serializable {
 
     }
 
+   // @XmlAttribute
+    public ArrayList<Book> getBooksBought() {
+        return booksBought;
+    }
+    @XmlAttribute
+    public int getMoneySpet() {
+        return moneySpet;
+    }
 
     public ArrayList<Book> get_books_bought(){
         return this.booksBought;
     }
+
     public int get_money_spent(){
         return this.moneySpet;
     }
+
     public void add_book(Book b){
         this.booksBought.add(b);
     }
     public void add_money_spent(int price){
         this.moneySpet += price;
     }
+    @XmlAttribute
     public String getFullName() {
         return fullName;
     }
