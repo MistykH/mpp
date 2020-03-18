@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="activation">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/JAXB_2.0_XJC_generator_1694/jaxbw-plugin/lib/activation.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB_2.0_XJC_generator_1694/jaxbw-plugin/lib/flamingo-wizard.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB_2.0_XJC_generator_1694/jaxbw-plugin/lib/jaxb-api.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB_2.0_XJC_generator_1694/jaxbw-plugin/lib/jaxb-impl.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB_2.0_XJC_generator_1694/jaxbw-plugin/lib/jaxbw-plugin.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB_2.0_XJC_generator_1694/jaxbw-plugin/lib/jsr173_1.0_api.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/JAXB_2.0_XJC_generator_1694/jaxbw-plugin/lib/jaxb-xjc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/JAXB_2.0_XJC_generator_1694/jaxbw-plugin/lib/jaxb-xjc.jar!/1.0" />
+    </SOURCES>
+  </library>
+</component>
